@@ -1,9 +1,9 @@
 public class Grid {
-    public static int rows;
+    public int rows = 10;
 
-    public static int cols;
+    public int cols = 10;
 
-    final static int MINES = 10;
+    final int MINES = 10;
 
     // For keeping track of how many bombs are adjacent to a cell to render in the cell's place 
     private int bombTally = 0;
@@ -11,6 +11,14 @@ public class Grid {
     private String[][] grid;
 
     
+    public String[][] getGrid() {
+        return grid;
+    }
+
+    public void setGrid(String[][] grid) {
+        this.grid = grid;
+    }
+
     /**--------------------------------------------
      *               CONSTRUCTORS
      *---------------------------------------------**/
@@ -33,35 +41,40 @@ public class Grid {
      * GETTERS AND SETTERS
      * ---------------------------------------------
      **/
-    public static int getRows() {
-        return rows;
+    public int getRows() {
+        return this.rows;
     }
 
-    public static void setRows(int rows) {
+    public void setRows(int rows) {
         if (rows > 0) {
-            Grid.rows = rows;
+            this.rows = rows;
         }
     }
 
-    public static int getCols() {
-        return cols;
+    public int getCols() {
+        return this.cols;
     }
 
-    public static void setCols(int cols) {
+    public void setCols(int cols) {
         if (cols > 0) {
-            Grid.cols = cols;
+            this.cols = cols;
         }
     }
 
     /**--------------------------------------------
      *               METHODS
      *---------------------------------------------**/
-    public void renderGrid(int[][] gridToRender) {
-        for (int i = 0; i < gridToRender.length; i++) {
-            for (int j = 0; j < gridToRender[i].length; j++) {
-                System.out.print(gridToRender[i][j] + " ");
+    public void renderGrid(Grid gridToRender) {
+        // +1 since we have to render the indicators for the x-coordinates too
+                System.out.println("  0 1 2 3 4 5 6 7 8 9");
+
+        for (int i = 0; i < gridToRender.getGrid().length; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < gridToRender.getGrid()[i].length; j++) {
+                System.out.print(gridToRender.getGrid()[i][j] + " ");
             }
             System.out.println();
         }
     }
 }
+
