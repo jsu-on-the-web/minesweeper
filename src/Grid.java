@@ -143,11 +143,11 @@ public class Grid {
 
     public boolean checkForAdjacentBomb(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
-            return;
+            return false;
         }
         
         if (bombLocationGrid[row][col] == false) {
-            return;
+            return false;
         }
 
         bombTally++;
