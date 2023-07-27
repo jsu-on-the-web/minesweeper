@@ -140,4 +140,17 @@ public class Grid {
 
         bombLocationGrid[row][col] = true;
     }
+
+    public boolean checkForAdjacentBomb(int row, int col) {
+        if (row < 0 || row >= rows || col < 0 || col >= cols) {
+            return;
+        }
+        
+        if (bombLocationGrid[row][col] == false) {
+            return;
+        }
+
+        bombTally++;
+        return bombLocationGrid[row][col]; //returning the value of that grid square since it's convenient.
+    }
 }
