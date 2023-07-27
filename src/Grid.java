@@ -84,6 +84,13 @@ public class Grid {
      * METHODS
      * ---------------------------------------------
      **/
+
+     
+    /**
+     * Renders the grid by printing it to the console.
+     *
+     * @param  gridToRender   the grid to be rendered
+     */ 
     public void renderGrid(Grid gridToRender) {
         // +1 since we have to render the indicators for the x-coordinates too
         System.out.println("  0 1 2 3 4 5 6 7 8 9");
@@ -97,6 +104,11 @@ public class Grid {
         }
     }
 
+    /**
+     * Renders the bomb locations on the grid.
+     *
+     * @param  gridToRender  the grid to be rendered
+     */ 
     public void renderBombLocations(Grid gridToRender) {
         // +1 since we have to render the indicators for the x-coordinates too
         System.out.println("  0 1 2 3 4 5 6 7 8 9");
@@ -114,6 +126,12 @@ public class Grid {
         }
     }
 
+    /**
+     * Generates bombs for the game.
+     *
+     * @param  None
+     * @return None
+     */
     public void generateBombs() {
         for (int i = 0; i < MINES; i++) {
             int bombRow;
@@ -133,6 +151,12 @@ public class Grid {
         }
     }
 
+    /**
+     * Adds a bomb to the specified location on the grid.
+     *
+     * @param  row the row index of the bomb location
+     * @param  col the column index of the bomb location
+     */
     public void addBomb(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
             return;
@@ -141,6 +165,13 @@ public class Grid {
         bombLocationGrid[row][col] = true;
     }
 
+    /**
+     * Checks if there is an adjacent bomb at the specified row and column.
+     *
+     * @param  row  the row index of the grid
+     * @param  col  the column index of the grid
+     * @return      true if there is an adjacent bomb, false otherwise
+     */
     public boolean checkForAdjacentBomb(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
             return false;
