@@ -31,6 +31,8 @@ public class Grid {
                 grid[i][j].currentIcon = "\u25A0";
             }
         }
+
+        generateBombs();
     }
 
     /**
