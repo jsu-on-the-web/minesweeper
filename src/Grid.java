@@ -204,15 +204,13 @@ public class Grid {
         if (!isValidBoxLocation(row, col)) {
             return false;
         }
+        bombTally = 0; // reseting the bomb tally
 
-        if (!(grid[row][col].isHasBomb())) {
-            return false;
-        }
+        // Coordinates for iterating through the grid
+        int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+        int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
 
-
-        // 
         bombTally++;
-        // Need to add an empty string so that it's recognized as a string
         return true; // returning the value of that grid square since it's convenient.
     }
 
