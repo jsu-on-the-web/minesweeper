@@ -210,8 +210,20 @@ public class Grid {
         int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
         int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
 
-        bombTally++;
-        return true; // returning the value of that grid square since it's convenient.
+        for (int i = 0; i < 8; i++) { 
+            int x = row + dx[i];
+            int y = col + dy[i];
+
+            // Check that the current grid square being checked is in bounds
+            if (!isValidBoxLocation(x, y)) {
+                continue; // skip over this box, go to the next one
+            }
+
+            if (grid[x][y].isHasBomb()) {
+                bombTally++;
+            }
+        }
+        return true; 
     }
 
     public boolean isValidBoxLocation(int row, int col) {
