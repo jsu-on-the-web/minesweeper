@@ -201,7 +201,7 @@ public class Grid {
      * @return true if there is an adjacent bomb, false otherwise
      */
     public boolean checkForAdjacentBomb(int row, int col) {
-        if (row < 0 || row >= rows || col < 0 || col >= cols) {
+        if (!isValidBoxLocation(row, col)) {
             return false;
         }
 
@@ -214,5 +214,12 @@ public class Grid {
         bombTally++;
         // Need to add an empty string so that it's recognized as a string
         return true; // returning the value of that grid square since it's convenient.
+    }
+
+    public boolean isValidBoxLocation(int row, int col) {
+        if (row < 0 || row >= rows || col < 0 || col >= cols) {
+            return false;
+        }
+        return true;
     }
 }
