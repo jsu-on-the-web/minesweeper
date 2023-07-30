@@ -11,7 +11,7 @@ public class App {
         + "|_|   |_||___| |_|  |__||_______||_______||__| |__||_______||_______||___|    |_______||___|  |_|\n";
 
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
+
         
         System.out.println(title);
 

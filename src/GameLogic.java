@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class GameLogic {
     /**
      * ------------------------------------------------------------------------
@@ -31,9 +33,16 @@ public class GameLogic {
      **/
 
     public void playGame() {
+        Scanner scanner = new Scanner(System.in);
         while (!gameEnded) {
+            grid.renderGrid(grid);
+            //grid.renderBombLocations(grid);
 
+            System.out.println("Enter the row and column of the box you want to reveal.");
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
 
+            pickBox(row, col);
         }
     }
 
@@ -62,7 +71,7 @@ public class GameLogic {
 
         // Else it must be a regular box
         grid.getBox(row, col).setRevealed(true);
-        grid.checkForAdjacentBomb(row, col);
+        grid.checkForAdjacentBomb(row, col); // ? Try implementing a cascading function?
         grid.getBox(row, col).currentIcon = grid.getBombTally() + "";
         return true; 
 
