@@ -1,13 +1,15 @@
 public class Grid {
-    public int rows = 10;
+    private int rows = 10;
 
-    public int cols = 10;
+    private int cols = 10;
 
-    final int MINES = 10;
+    private int mines = 10;
 
     // For keeping track of how many bombs are adjacent to a cell to render in the
     // cell's place
     private int bombTally = 0;
+
+    private int nonBombsLeft;
 
     private Box[][] grid;
     // private String[][] visibleGrid;
@@ -33,6 +35,8 @@ public class Grid {
         }
 
         generateBombs();
+
+        setNonBombsLeft(rows * cols - mines);
     }
 
     /**
@@ -45,7 +49,9 @@ public class Grid {
     }
 
     public void setRows(int rows) {
-        if (rows > 0) {
+        if (rows < 0) {
+            throw new IllegalArgumentException("Rows cannot be negative");
+        } else {
             this.rows = rows;
         }
     }
@@ -55,8 +61,22 @@ public class Grid {
     }
 
     public void setCols(int cols) {
-        if (cols > 0) {
+        if (cols < 0) {
+            throw new IllegalArgumentException("Columns cannot be negative");
+        } else {
             this.cols = cols;
+        }
+    }
+
+    public int getMines() {
+        return mines;
+    }
+
+    public void setMines(int mines) {
+        if (mines < 0) {
+            throw new IllegalArgumentException("Mines cannot be negative");
+        } else {
+            this.mines = mines;
         }
     }
 
@@ -66,6 +86,26 @@ public class Grid {
         }
 
         return grid[row][col];
+    }
+
+    public int getBombTally() {
+        return bombTally;
+    }
+
+    public void setBombTally(int bombTally) {
+        this.bombTally = bombTally;
+    }
+
+    public int getNonBombsLeft() {
+        return nonBombsLeft;
+    }
+
+    public void setNonBombsLeft(int nonBombsLeft) {
+        if (nonBombsLeft < 0) {
+            this.nonBombsLeft = 0;
+        } else {
+            this.nonBombsLeft = nonBombsLeft;
+        }
     }
 
     /**
@@ -121,7 +161,7 @@ public class Grid {
      * @return None
      */
     public void generateBombs() {
-        for (int i = 0; i < MINES; i++) {
+        for (int i = 0; i < mines; i++) {
             int bombRow;
             int bombCol;
 
@@ -165,11 +205,14 @@ public class Grid {
             return false;
         }
 
-        if (!grid[row][col].isHasBomb()) {
+        if (!(grid[row][col].isHasBomb())) {
             return false;
         }
 
+
+        // 
         bombTally++;
-        return grid[row][col].isHasBomb(); // returning the value of that grid square since it's convenient.
+        // Need to add an empty string so that it's recognized as a string
+        return true; // returning the value of that grid square since it's convenient.
     }
 }
