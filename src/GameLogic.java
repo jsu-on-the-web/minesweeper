@@ -62,9 +62,9 @@ public class GameLogic {
 
         // Else it must be a regular box
         grid.getBox(row, col).setRevealed(true);
-        
-        
-        grid.getBox(row, col).currentIcon = grid.getBombTally() + ""; 
+        grid.checkForAdjacentBomb(row, col);
+        grid.getBox(row, col).currentIcon = grid.getBombTally() + "";
+        return true; 
 
     }
 }
