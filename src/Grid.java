@@ -147,7 +147,7 @@ public class Grid {
                 if (gridToRender.grid[i][j].isHasBomb() == true) {
                     System.out.print("X ");
                 } else {
-                    System.out.print("\u25A0 ");
+                    System.out.print(gridToRender.grid[i][j].currentIcon + " ");
                 }
             }
             System.out.println();

@@ -25,7 +25,9 @@ public class App {
         Grid grid = new Grid(10, 10);
         GameLogic game = new GameLogic(grid);
 
-        System.out.println(winMessage);
+        System.out.println(title);
+        grid.renderBombLocations(grid);
+        game.playGame();
 
         // System.out.println("This is the grid");
         // grid.renderGrid(grid);
@@ -36,7 +38,13 @@ public class App {
 
         // Win?
         if (game.isPlayerWon()) {
-            System.out.println();
+            System.out.println(winMessage);
+            grid.renderBombLocations(grid);
+            System.out.println("Thanks for playing!");
+        } else {
+            System.out.println(loseMessage);
+            grid.renderBombLocations(grid);
+            System.out.println("Better luck next time!");
         }
 
         // // Win?

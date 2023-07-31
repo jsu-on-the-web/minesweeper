@@ -102,7 +102,7 @@ public class GameLogic {
      */
     public boolean checkBox(int row, int col) {
         // * Let's see if there's a bomb
-        if (grid.getBox(row, col).isRevealed() != false && grid.getBox(row, col).isHasBomb()) {
+        if (grid.getBox(row, col).isHasBomb()) {
             grid.getBox(row, col).setCurrentIcon("X");
             playerWon = false;
             gameEnded = true;
