@@ -21,9 +21,10 @@ public class Grid {
      * ---------------------------------------------
      **/
 
-    Grid(int rows, int cols) {
+    Grid(int rows, int cols, int mines) {
         setRows(rows);
         setCols(cols);
+        setMines(mines);
         grid = new Box[rows][cols];
 
         // Setting all the initial values of the grid to ■

@@ -10,6 +10,12 @@ public class App {
       *               TITLES
       *---------------------------------------------**/
 
+      public static final String setupMessage = "    ____       ____                                         __             __     \n" +
+      "   / __ )___  / __/___  ________     _      _____     _____/ /_____ ______/ /_    \n" +
+      "  / __  / _ \\/ /_/ __ \\/ ___/ _ \\   | | /| / / _ \\   / ___/ __/ __ `/ ___/ __/    \n" +
+      " / /_/ /  __/ __/ /_/ / /  /  __/   | |/ |/ /  __/  (__  ) /_/ /_/ / /  / /__ _ _ \n" +
+      "/_____/\\___/_/  \\____/_/   \\___/    |__/|__/\\___/  /____/\\__/\\__,_/_/   \\__(_|_|_)";
+
       public static final String loseMessage = "__  __               __                       \n"
     + "\\ \\/ /___  __  __   / /   ____  ________      \n"
     + " \\  / __ \\/ / / /  / /   / __ \\/ ___/ _ \\     \n"
@@ -25,7 +31,16 @@ public static final String winMessage = "__  __               _       ___       
 //**-----------------------------------------------------------------------
 
     public static void main(String[] args) throws Exception {
-        Grid grid = new Grid(10, 10);
+        // * Setup, grab size and mines from the player
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(setupMessage);
+        System.out.println("Welcome to Minesweeper.java! Let's get some details to make this session perfect for you.");
+        System.out.println("How big do you want the grid to be?");
+        int rowsAndCols = scanner.nextInt();
+        System.out.println("How many mines should there be? \n (We recommend this to be the same as the grid size you entered before.)");
+        int minesAmount = scanner.nextInt();
+        
+        Grid grid = new Grid(rowsAndCols, rowsAndCols, minesAmount);
         GameLogic game = new GameLogic(grid);
 
         game.playGame();
