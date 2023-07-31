@@ -226,6 +226,42 @@ public class Grid {
         return true; 
     }
 
+        /**
+     * Recursive method to reveal all adjacent empty boxes.
+     *
+     * @param row the row index of the current box
+     * @param col the column index of the current box
+     */
+    public void revealAdjacentEmptyBoxes(int row, int col) {
+        // Coordinates for iterating through the grid
+        int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+        int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+        for (int i = 0; i < 8; i++) {
+            int x = row + dx[i];
+            int y = col + dy[i];
+
+            // Check that the current grid square being checked is within the grid bounds
+            if (x >= 0 && x < rows && y >= 0 && y < cols) {
+                Box currentBox = grid[x][y];
+
+                // Check if the box is not already revealed
+                if (!currentBox.isRevealed()) {
+                    // Mark the box as revealed and update its current icon
+                    currentBox.setRevealed(true);
+                    checkForAdjacentBomb(x, y);
+                    currentBox.setCurrentIcon(getBombTally() + "");
+
+                    // If the revealed box is also empty, continue revealing its adjacent empty boxes
+                    if (getBombTally() == 0) {
+                        revealAdjacentEmptyBoxes(x, y);
+                    }
+                }
+            }
+        }
+    }
+
+
     public boolean isValidBoxLocation(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
             return false;

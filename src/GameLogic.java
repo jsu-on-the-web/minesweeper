@@ -127,6 +127,13 @@ public class GameLogic {
             grid.getBox(row, col).setRevealed(true);
             grid.checkForAdjacentBomb(row, col); // ? Try implementing a cascading function?
             grid.getBox(row, col).currentIcon = grid.getBombTally() + "";
+            grid.setNonBombsLeft(grid.getNonBombsLeft() - 1);
+            
+            if (grid.getBombTally() == 0) {
+                grid.revealAdjacentEmptyBoxes(row, col);
+            }
+    
+
             return true;
         }
     }
