@@ -11,15 +11,29 @@ public class App {
         + "|_|   |_||___| |_|  |__||_______||_______||__| |__||_______||_______||___|    |_______||___|  |_|\n";
 
     public static void main(String[] args) throws Exception {
-
+                Grid grid = new Grid(10, 10);
+    GameLogic game = new GameLogic(grid);
         
         System.out.println(title);
 
+        // System.out.println("This is the grid");
+        // grid.renderGrid(grid);
+        // System.out.println("This is the grid + bomb locations");
+        // grid.renderBombLocations(grid);
 
-        Grid grid = new Grid(10, 10);
-        System.out.println("This is the grid");
-        grid.renderGrid(grid);
-        System.out.println("This is the grid + bomb locations");
-        grid.renderBombLocations(grid);
+        
+            // * Check for win and lose conditions
+            
+            // // Win?
+            // if (game.checkIfAllBoxesChecked()) {
+            //     game.setGameEnded(true);
+            //     game.setPlayerWon(true);
+            // } 
+
+            // // Lose?
+            // if (game.isGameEnded() && !game.isPlayerWon()) {
+            //     game.setGameEnded(true);
+            //     game.setPlayerWon(false);
+            // }
     }
 }

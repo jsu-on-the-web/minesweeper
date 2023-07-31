@@ -25,6 +25,23 @@ public class GameLogic {
      * ---------------------------------------------
      **/
 
+    public boolean isGameEnded() {
+        return gameEnded;
+    }
+
+    public void setGameEnded(boolean gameEnded) {
+        this.gameEnded = gameEnded;
+    }
+
+        public boolean isPlayerWon() {
+        return playerWon;
+    }
+
+    public void setPlayerWon(boolean playerWon) {
+        this.playerWon = playerWon;
+    }
+
+
     /**
      * --------------------------------------------
      * GAME LOGIC
@@ -46,12 +63,6 @@ public class GameLogic {
 
             pickBox(row, col);
 
-            // * Check for win and lose conditions
-
-            if (checkIfAllBoxesChecked()) {
-                gameEnded = true;
-                playerWon = true;
-            }
         }
     }
 
