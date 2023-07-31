@@ -122,8 +122,8 @@ public class Grid {
      */
     public void renderGrid(Grid gridToRender) {
         // +1 since we have to render the indicators for the x-coordinates too
-        //System.out.println("  0 1 2 3 4 5 6 7 8 9");
-        String colIndicators = " ";
+        // System.out.println(" 0 1 2 3 4 5 6 7 8 9");
+        String colIndicators = "  ";
 
         for (int i = 0; i < gridToRender.getCols(); i++) {
             colIndicators += i + " ";
@@ -134,6 +134,16 @@ public class Grid {
         for (int i = 0; i < gridToRender.grid.length; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < gridToRender.grid[i].length; j++) {
+                // This is supposed to handle grids of double digit lengths, but it looks really
+                // disgusting and janky
+                // If you want, comment this if-else block out and just use the single println
+                // below
+                // if (j > 9) {
+                //     System.out.print(gridToRender.grid[i][j].currentIcon + "  ");
+                // } else {
+                //     System.out.print(gridToRender.grid[i][j].currentIcon + " ");
+                // }
+
                 System.out.print(gridToRender.grid[i][j].currentIcon + " ");
             }
             System.out.println();
@@ -147,21 +157,33 @@ public class Grid {
      */
     public void renderBombLocations(Grid gridToRender) {
         // +1 since we have to render the indicators for the x-coordinates too
-        String colIndicators = " ";
+        String colIndicators = "  ";
 
         for (int i = 0; i < gridToRender.getCols(); i++) {
             colIndicators += i + " ";
         }
 
-                System.out.println(colIndicators);
-
+        System.out.println(colIndicators);
 
         for (int i = 0; i < gridToRender.grid.length; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < gridToRender.grid[i].length; j++) {
-                if (gridToRender.grid[i][j].isHasBomb() == true) {
-                    System.out.print("X ");
+                                    // Same as the version in renderGrid
+                if (gridToRender.grid[i][j].isHasBomb()) {
+                //     if (j > 9) {
+                //         System.out.print("X  ");
+                //     } else {
+                //         System.out.print("X ");
+                //     }
+                System.out.print("X ");
                 } else {
+                    // Same as the version in renderGrid
+                    // if (j > 9) {
+                    //     System.out.print(gridToRender.grid[i][j].currentIcon + "  ");
+                    // } else {
+                    //     System.out.print(gridToRender.grid[i][j].currentIcon + " ");
+                    // }
+
                     System.out.print(gridToRender.grid[i][j].currentIcon + " ");
                 }
             }
@@ -222,10 +244,10 @@ public class Grid {
         bombTally = 0; // reseting the bomb tally
 
         // Coordinates for iterating through the grid
-        int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
-        int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+        int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
-        for (int i = 0; i < 8; i++) { 
+        for (int i = 0; i < 8; i++) {
             int x = row + dx[i];
             int y = col + dy[i];
 
@@ -238,10 +260,10 @@ public class Grid {
                 bombTally++;
             }
         }
-        return true; 
+        return true;
     }
 
-        /**
+    /**
      * Recursive method to reveal all adjacent empty boxes.
      *
      * @param row the row index of the current box
@@ -249,8 +271,8 @@ public class Grid {
      */
     public void revealAdjacentEmptyBoxes(int row, int col) {
         // Coordinates for iterating through the grid
-        int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
-        int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+        int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
         for (int i = 0; i < 8; i++) {
             int x = row + dx[i];
@@ -268,7 +290,8 @@ public class Grid {
                     setNonBombsLeft(getNonBombsLeft() - 1);
                     currentBox.setCurrentIcon(getBombTally() + "");
 
-                    // If the revealed box is also empty, continue revealing its adjacent empty boxes
+                    // If the revealed box is also empty, continue revealing its adjacent empty
+                    // boxes
                     if (getBombTally() == 0) {
                         revealAdjacentEmptyBoxes(x, y);
                     }
@@ -276,7 +299,6 @@ public class Grid {
             }
         }
     }
-
 
     public boolean isValidBoxLocation(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
