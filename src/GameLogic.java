@@ -10,6 +10,18 @@ public class GameLogic {
     private boolean gameEnded = false;
     private boolean playerWon;
 
+    /**--------------------------------------------
+     *               TITLES
+     *---------------------------------------------**/
+
+     public static final String title = " __   __  ___   __    _  _______  _______  _     _  _______  _______  _______  _______  ______   \n"
+     + "|  |_|  ||   | |  |  | ||       ||       || | _ | ||       ||       ||       ||       ||    _ |  \n"
+     + "|       ||   | |   |_| ||    ___||  _____|| || || ||    ___||    ___||    _  ||    ___||   | ||  \n"
+     + "|       ||   | |       ||   |___ | |_____ |       ||   |___ |   |___ |   |_| ||   |___ |   |_||_ \n"
+     + "|       ||   | |  _    ||    ___||_____  ||       ||    ___||    ___||    ___||    ___||    __  |\n"
+     + "| ||_|| ||   | | | |   ||   |___  _____| ||   _   ||   |___ |   |___ |   |    |   |___ |   |  | |\n"
+     + "|_|   |_||___| |_|  |__||_______||_______||__| |__||_______||_______||___|    |_______||___|  |_|\n";
+
     /**
      * ------------------------------------------------------------------------
      * METHODS
@@ -52,6 +64,8 @@ public class GameLogic {
         // Setting up input
         Scanner scanner = new Scanner(System.in);
         while (!gameEnded) {
+            clearScreen();
+            System.out.println(title);
             // We should render the grid on every turn
             grid.renderGrid(grid);
             // grid.renderBombLocations(grid);
@@ -62,8 +76,9 @@ public class GameLogic {
             int col = scanner.nextInt();
 
             pickBox(row, col);
-
         }
+
+        clearScreen(); // One more clear screen for when game is over
     }
 
     public boolean checkIfAllBoxesChecked() {
@@ -114,5 +129,13 @@ public class GameLogic {
             grid.getBox(row, col).currentIcon = grid.getBombTally() + "";
             return true;
         }
+    }
+
+    /**--------------------------------------------
+     *               MISC
+     *---------------------------------------------**/
+    public void clearScreen() {
+        System.out.print("\u001b[H\u001b[2J"); // This strange set of characters will clear the terminal on any OS
+        System.out.flush();
     }
 }
