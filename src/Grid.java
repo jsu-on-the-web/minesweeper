@@ -251,6 +251,7 @@ public class Grid {
                     // Mark the box as revealed and update its current icon
                     currentBox.setRevealed(true);
                     checkForAdjacentBomb(x, y);
+                    setNonBombsLeft(getNonBombsLeft() - 1);
                     currentBox.setCurrentIcon(getBombTally() + "");
 
                     // If the revealed box is also empty, continue revealing its adjacent empty boxes

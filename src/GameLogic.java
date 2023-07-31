@@ -76,6 +76,10 @@ public class GameLogic {
             int col = scanner.nextInt();
 
             pickBox(row, col);
+
+            if (grid.getNonBombsLeft() == 0) {
+                gameEnded = true;
+            }
         }
 
         clearScreen(); // One more clear screen for when game is over
@@ -125,12 +129,17 @@ public class GameLogic {
         } else {
             // * Else it must be a regular box
             grid.getBox(row, col).setRevealed(true);
+            grid.setNonBombsLeft(grid.getNonBombsLeft() - 1);
             grid.checkForAdjacentBomb(row, col); // ? Try implementing a cascading function?
             grid.getBox(row, col).currentIcon = grid.getBombTally() + "";
-            grid.setNonBombsLeft(grid.getNonBombsLeft() - 1);
             
             if (grid.getBombTally() == 0) {
                 grid.revealAdjacentEmptyBoxes(row, col);
+            }
+
+            if (grid.getNonBombsLeft() == 0) {
+                playerWon = true;
+                gameEnded = true;
             }
     
 
