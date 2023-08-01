@@ -45,11 +45,6 @@ public static final String winMessage = "__  __               _       ___       
 
         game.playGame();
 
-        // System.out.println("This is the grid");
-        // grid.renderGrid(grid);
-        // System.out.println("This is the grid + bomb locations");
-        // grid.renderBombLocations(grid);
-
         // * Check for win and lose conditions
 
         // Win?
@@ -62,17 +57,5 @@ public static final String winMessage = "__  __               _       ___       
             grid.renderBombLocations(grid);
             System.out.println("Better luck next time!");
         }
-
-        // // Win?
-        // if (game.checkIfAllBoxesChecked()) {
-        // game.setGameEnded(true);
-        // game.setPlayerWon(true);
-        // }
-
-        // // Lose?
-        // if (game.isGameEnded() && !game.isPlayerWon()) {
-        // game.setGameEnded(true);
-        // game.setPlayerWon(false);
-        // }
     }
 }

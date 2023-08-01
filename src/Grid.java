@@ -12,9 +12,6 @@ public class Grid {
     private int nonBombsLeft;
 
     private Box[][] grid;
-    // private String[][] visibleGrid;
-    // private boolean[][] bombLocationGrid;
-
     /**
      * --------------------------------------------
      * CONSTRUCTORS
@@ -122,7 +119,6 @@ public class Grid {
      */
     public void renderGrid(Grid gridToRender) {
         // +1 since we have to render the indicators for the x-coordinates too
-        // System.out.println(" 0 1 2 3 4 5 6 7 8 9");
         String colIndicators = "  ";
 
         for (int i = 0; i < gridToRender.getCols(); i++) {
